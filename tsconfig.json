@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "lib": ["es6", "dom"],
+    "moduleResolution" : "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./definitions"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "platforms"
+  ]
+}
