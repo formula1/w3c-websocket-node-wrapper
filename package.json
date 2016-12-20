@@ -1,11 +1,11 @@
 {
   "name": "w3c-websocket-node-wrapper",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
-  "main": "./build/index.js",
+  "main": "./dist/index.js",
   "typings": "./src/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,6 +15,7 @@
     "websocket-driver": "^0.6.5"
   },
   "devDependencies": {
+    "rimraf": "^2.5.4",
     "typescript": "^2.1.4"
   }
 }
