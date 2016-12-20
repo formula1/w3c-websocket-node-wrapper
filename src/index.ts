@@ -1,6 +1,5 @@
 
 import IWebsocketDriver from "./driver";
-import { EventFunction, IWebSocket, IEvent } from "./IWebSocket";
 import { EventEmitter } from "events";
 import { IncomingMessage } from "http";
 import { Duplex } from "stream";
@@ -11,6 +10,8 @@ const websocketUtil: {
 } = wsdriver.server;
 
 
+type EventFunction = (ev: Event) => any;
+
 enum READYSTATE_CONSTANTS {
   CONNECTING = 0,
   OPEN,
@@ -18,7 +19,7 @@ enum READYSTATE_CONSTANTS {
   CLOSED,
 };
 
-class DriverWebsocket implements IWebSocket {
+class DriverWebsocket implements WebSocket {
   public any: any;
   public void: void;
   public get binaryType() {
@@ -157,4 +158,3 @@ class DriverWebsocket implements IWebSocket {
 };
 
 export default DriverWebsocket;
-export { IEvent, IWebSocket };
