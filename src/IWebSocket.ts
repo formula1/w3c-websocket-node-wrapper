@@ -1,5 +1,5 @@
 
-declare interface IEventTarget {
+interface IEventTarget {
   addEventListener(eventname: string, fn: EventFunction): void;
   removeEventListener(eventname: string, fn: EventFunction): void;
   dispatchEvent(evt: IEvent): boolean;
@@ -68,4 +68,4 @@ enum READYSTATE_CONSTANTS {
   dispatchEvent(evt: IEvent): boolean;
 }
 
-export { IWebSocket, EventFunction };
+export { IWebSocket, IEvent, EventFunction };

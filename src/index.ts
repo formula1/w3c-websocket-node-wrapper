@@ -1,6 +1,6 @@
 
 import IWebsocketDriver from "./driver";
-import { EventFunction, IWebSocket } from "./IWebSocket";
+import { EventFunction, IWebSocket, IEvent } from "./IWebSocket";
 import { EventEmitter } from "events";
 import { IncomingMessage } from "http";
 import { Duplex } from "stream";
@@ -157,4 +157,4 @@ class DriverWebsocket implements IWebSocket {
 };
 
 export default DriverWebsocket;
-export { IWebSocket };
+export { IEvent, IWebSocket };
