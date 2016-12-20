@@ -1,5 +1,3 @@
-/// <reference path="../node_modules/@types/node/index.d.ts" />
-
 
 import IWebsocketDriver from "./driver";
 import { EventEmitter } from "events";
@@ -11,7 +9,6 @@ const websocketUtil: {
   http: (req: IncomingMessage, options?: Object) => IWebsocketDriver;
 } = wsdriver.server;
 
-type EventFunction = (ev: Event) => any;
 
 enum READYSTATE_CONSTANTS {
   CONNECTING = 0,
@@ -20,7 +17,7 @@ enum READYSTATE_CONSTANTS {
   CLOSED,
 };
 
-class DriverWebsocket implements WebSocket {
+class DriverWebsocket implements IWebSocket {
   public any: any;
   public void: void;
   public get binaryType(){
@@ -130,7 +127,7 @@ class DriverWebsocket implements WebSocket {
     this.ee.addListener(eventname, fn);
   }
 
-  public dispatchEvent(evt: Event): boolean {
+  public dispatchEvent(evt): boolean {
     return false;
   }
 
@@ -141,7 +138,7 @@ class DriverWebsocket implements WebSocket {
   private getFunctionVal(eventname: string) {
     return this.mappedEvents.get(eventname);
   }
-  private setFunctionVal(eventname: string, fn: EventFunction): void {
+  private setFunctionVal(eventname: string, fn): void {
     let prevFn = this.mappedEvents.get(eventname);
     if (prevFn === fn) {
       return;

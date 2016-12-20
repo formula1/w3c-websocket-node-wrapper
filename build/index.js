@@ -1,4 +1,3 @@
-/// <reference path="../node_modules/@types/node/index.d.ts" />
 "use strict";
 const events_1 = require("events");
 const wsdriver = require("websocket-driver");
