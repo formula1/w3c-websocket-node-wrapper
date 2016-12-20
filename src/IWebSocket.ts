@@ -12,7 +12,7 @@ enum EventPhase {
   BUBBLING_PHASE,
 }
 
-declare interface IEvent {
+interface IEvent {
   readonly NONE: EventPhase;
   readonly CAPTURING_PHASE: EventPhase;
   readonly AT_TARGET: EventPhase;
@@ -46,7 +46,7 @@ enum READYSTATE_CONSTANTS {
   CLOSED,
 };
 
-declare interface IWebSocket {
+ interface IWebSocket {
   binaryType: string;
   bufferedAmount: number;
   extensions: string;
@@ -67,3 +67,5 @@ declare interface IWebSocket {
   removeEventListener(eventname: string, fn: EventFunction): void;
   dispatchEvent(evt: IEvent): boolean;
 }
+
+export { IWebSocket, EventFunction };

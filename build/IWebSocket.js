@@ -1,3 +1,4 @@
+"use strict";
 var EventPhase;
 (function (EventPhase) {
     EventPhase[EventPhase["NONE"] = 0] = "NONE";

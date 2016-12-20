@@ -1,5 +1,6 @@
 
 import IWebsocketDriver from "./driver";
+import { EventFunction, IWebSocket } from "./IWebSocket";
 import { EventEmitter } from "events";
 import { IncomingMessage } from "http";
 import { Duplex } from "stream";
@@ -20,22 +21,22 @@ enum READYSTATE_CONSTANTS {
 class DriverWebsocket implements IWebSocket {
   public any: any;
   public void: void;
-  public get binaryType(){
+  public get binaryType() {
     return "";
   };
-  public get bufferedAmount(){
+  public get bufferedAmount() {
     return 0;
   }
-  public get extensions(){
+  public get extensions() {
     return "";
   }
-  public get protocol(){
+  public get protocol() {
     return this._driver.protocol;
   }
-  public get url(){
+  public get url() {
     return this._req.url;
   }
-  public get readyState(){
+  public get readyState() {
     switch (this._driver.getState()) {
       case "connecting" : return READYSTATE_CONSTANTS.CONNECTING;
       case "open" : return READYSTATE_CONSTANTS.OPEN;
@@ -45,40 +46,40 @@ class DriverWebsocket implements IWebSocket {
     }
   }
 
-  public get OPEN(){
+  public get OPEN() {
     return READYSTATE_CONSTANTS.OPEN;
   }
-  public get CONNECTING(){
+  public get CONNECTING() {
     return READYSTATE_CONSTANTS.CONNECTING;
   }
-  public get CLOSING(){
+  public get CLOSING() {
     return READYSTATE_CONSTANTS.CLOSING;
   }
-  public get CLOSED(){
+  public get CLOSED() {
     return READYSTATE_CONSTANTS.CLOSED;
   }
 
   private mappedEvents: Map<string, EventFunction>;
 
-  public get onclose(){
+  public get onclose() {
     return this.getFunctionVal("close");
   }
-  public set onclose(v){
+  public set onclose(v) {
     this.setFunctionVal("close", v);
   }
-  public get onerror(){
+  public get onerror() {
     return this.getFunctionVal("error");
   }
-  public set onerror(v){
+  public set onerror(v) {
     this.setFunctionVal("error", v);
   }
-  public get onmessage(){
+  public get onmessage() {
     return this.getFunctionVal("message");
   }
-  public set onmessage(v){
+  public set onmessage(v) {
     this.setFunctionVal("message", v);
   }
-  public get onopen(){
+  public get onopen() {
     return this.getFunctionVal("open");
   }
   public set onopen(v){
@@ -116,14 +117,14 @@ class DriverWebsocket implements IWebSocket {
   public close() {
     this._driver.close("Explicit Close", 10);
   }
-  public send(str: string | ArrayBuffer) {
+  public send(str) {
     if (str instanceof ArrayBuffer) {
       this._driver.binary(str);
     } else {
       this._driver.text(str);
     }
   }
-  public addEventListener(eventname: string, fn) {
+  public addEventListener(eventname, fn) {
     this.ee.addListener(eventname, fn);
   }
 
@@ -131,14 +132,14 @@ class DriverWebsocket implements IWebSocket {
     return false;
   }
 
-  public removeEventListener(eventname: string, fn) {
+  public removeEventListener(eventname, fn) {
     this.ee.removeListener(eventname, fn);
   };
 
-  private getFunctionVal(eventname: string) {
+  private getFunctionVal(eventname) {
     return this.mappedEvents.get(eventname);
   }
-  private setFunctionVal(eventname: string, fn): void {
+  private setFunctionVal(eventname, fn): void {
     let prevFn = this.mappedEvents.get(eventname);
     if (prevFn === fn) {
       return;
@@ -156,3 +157,4 @@ class DriverWebsocket implements IWebSocket {
 };
 
 export default DriverWebsocket;
+export { IWebSocket };
